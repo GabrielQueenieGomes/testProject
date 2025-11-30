@@ -1,7 +1,7 @@
 package com.basic.java.practice;
 
 public class Animal {
-public int a = 10;
+static final int a = 10;
 public int b = 20;
 
 public void animalCount() {
