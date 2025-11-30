@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 
 public class Stepdef {
 	WebDriver driver;
+	PageObjectModel pom;
 	@Given("open chrome")
 	public void open_chrome() {
 		driver = new ChromeDriver();
