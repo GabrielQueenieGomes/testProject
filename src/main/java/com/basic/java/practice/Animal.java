@@ -1,12 +1,20 @@
 package com.basic.java.practice;
 
 public class Animal {
-static final int a = 10;
-public int b = 20;
+	static int a;
+	static double b;
+	static String name;
+	static Boolean status;
+	
+	public Animal (String name) {
+		this.name = name;
+	}
 
-public void animalCount() {
-	int totalResult = a + b;
-	System.out.println("How many animals in the zoo? " + totalResult);
-}
-
+	public static void main(String[] args) {
+		System.out.println(a);
+		System.out.println(b);
+		Animal obj = new Animal("Motin");
+		System.out.println(name);
+		System.out.println(status);
+	}
 }

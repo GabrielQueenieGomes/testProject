@@ -1,6 +1,6 @@
 package com.interview.selenium;
 
-import java.util.Set;
+// import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,24 +11,29 @@ public class AdvancedStream {
 
 	public void streamWindows() {
 		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.navigate().to("https://demo.guru99.com/popup.php"); // 1st window
-		
-		WebElement clickBtn = driver.findElement(By.xpath("//*[text()='Click Here']"));
-		clickBtn.click();
-		clickBtn.click();
-		clickBtn.click();
-		clickBtn.click();
-		clickBtn.click();
-		
-		String parentWindow = driver.getWindowHandle();
-		Set<String> allWindows = driver.getWindowHandles(); // 3rd c = P + 3C = 4
-		// For each work = array + Collection framework (List, Set, Map)
-		allWindows.stream().skip(3).forEach(child -> {
-			driver.switchTo().window(child);
-			driver.findElement(By.xpath("//*[@name='emailid']")).sendKeys("Hi");
-			
-		});
+	    driver.manage().window().maximize();
+	    driver.get("https://demo.guru99.com/popup.php");
+
+	    WebElement clickBtn = driver.findElement(By.xpath("//*[text()='Click Here']"));
+
+	    for (int i = 0; i < 5; i++) {
+	        clickBtn.click();
+	    }
+
+	    String parentWindow = driver.getWindowHandle();
+
+	    driver.getWindowHandles().stream()
+	            .filter(win -> !win.equals(parentWindow))
+	            .forEach(child -> {
+	                driver.switchTo().window(child);
+	                System.out.println("Child window title: " + driver.getTitle());
+
+	                driver.findElement(By.name("emailid"))
+	                      .sendKeys("test@example.com");
+	            });
+
+	    driver.switchTo().window(parentWindow);
+	    driver.quit();
 	}
 	
 	public static void main(String[] args) {
